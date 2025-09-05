@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Apple macOS version 5.8.0">
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+  <title></title>
+</head>
+<body>
+  <p id="h.ci7s19pl6fll">Multi-player Dilemma Incident Drill</p>
+  <h1 id="h.tr932r90e6j">Executive Summary</h1>
+  <p>TBD…</p>
+  <h1 id="h.ry6yuyg6dloi">Retrospective Agenda and Notes</h1>
+  <ul>
+    <li>(2m) Review our goals for the retro</li>
+    <li>(5-10m) Establish some common ground & validate the
+    narrative of what happened</li>
+    <li>(5m) Invite and sort topics for today’s reflection</li>
+    <li>(15m) To discuss the items</li>
+    <li>(2m) Conclude the retro</li>
+    <li>Use the remaining time for the podcast</li>
+  </ul>
+  <p>Welcome! Thank you for being here. I know you all have busy
+  schedules and could have chosen something else. Let’s do our best
+  to reward everyone for making that choice. The first step is to
+  set explicit ground rules for this retrospective. Our primary
+  goal for this meeting is for each of us to discover new insights
+  into the complexity of our continually changing business. It is
+  of particular importance to suspend judgement about mistakes or
+  errors and instead look closely for why those actions made sense
+  in the context of the incident.&nbsp;Let us agree at the outset
+  that no one of us has a complete or correct understanding of how
+  our whole system works. When things break, when we make mistakes,
+  we have an opportunity to peek through those cracks to get a new
+  glimpse into what’s really going on, to gain insights we can
+  apply, both individually&nbsp;and collectively, to improve
+  everything we do. There is so much more value to be mined from
+  this experience than the conventional post-incident action
+  items—please hold those ideas until the end after we have as much
+  context as possible.</p>
+  <h1 id="h.s6eiq86bapmu">Narrative</h1>
+  <p>The day began with high expectations and anticipation of high
+  traffic. A 50% off sale was intended to boost sales numbers which
+  have been in a recent slump.</p>
+  <p>Partial failure raised initial confusion: significant impact,
+  but only in the EU during US business hours.</p>
+  <p>Customer service was immediately overloaded.&nbsp;We were
+  completely caught off guard by the volume of customer complaints
+  and unable to focus on effective communications because we didn’t
+  understand what was happening. Many responders expressed surprise
+  that we didn’t detect the problems before the flood of support
+  calls.</p>
+  <p>Parallel investigations.&nbsp;Initial symptoms were quickly
+  confirmed to be focused in the EU. Investigations began seeking
+  evidence in two broad areas: 1) infrastructure, and 2) recent
+  changes to various services. Load balancers were found to be
+  working fine. The main symptom, an unbranded nginx 500 error,
+  indicated that networking and DNS were working correctly.</p>
+  <p>An email notification in the spam folder.&nbsp;The vendor
+  running our data center had known problems with air conditioning
+  that went unnoticed in our company because the message went to a
+  spam folder.</p>
+  <p>Notable shift to focus on infrastructure.&nbsp;The discovery
+  of the email from the vendor catalyzed a significant and
+  simultaneous shift in focus. Many responders independently turned
+  their attention away from investigating recent changes.</p>
+  <p>Multiple support contracts. The initial outreach to the vendor
+  revealed contractual terms of a 4 hour response time. Actual
+  response time turned out to be much faster under the other
+  contract, but there was significant distress in the moment.</p>
+  <p>Disruptive impact of executive attention.&nbsp;One of the
+  incident commanders was almost completely consumed with the work
+  of managing demands for information and updates for the CEO and
+  CTO.</p>
+  <p>Were we fixated on changes to services?&nbsp;As the focus
+  shifted towards possible ways to mitigate, with the initial
+  ambiguity becoming more clear, responders worried they had spent
+  too much time investigating changes.</p>
+  <p>Intermittent recovery.&nbsp;We reported recovery to our
+  customers too quickly. There were initial signs of recovery, but
+  they were not a complete solution.</p>
+  <p>Disagreement about business continuity plan (BCP).&nbsp;Once
+  the mechanism of failure was narrowed down to loss of
+  air-conditioning in the data center, there was significant
+  disagreement about whether to await the repair or fail out of the
+  data center.</p>
+  <p>Parallel interventions.&nbsp;Amid the disagreement, incident
+  commanders directed activity in two broad directions:
+  communications to discover what to expect from the vendor, and
+  taking steps toward failing out the datacenter. A key area of
+  focus was making sense of the business continuity plan to
+  understand the point of no return in that process and to do as
+  much preparation as possible before taking that high-consequence
+  action.</p>
+  <p>Uncomfortable success&nbsp;from engaging the BCP. In this
+  case, the BCP proved successful in mitigating impact. But from
+  previous drills of the BCP, we probably got lucky.</p>
+  <h1 id="h.gai63xifx18k">Themes</h1>
+  <p>A theme is something observed from multiple points-of-view in
+  the incident. It is a common area of interest from multiple
+  participants. A theme is rich with potential for generating
+  insight or discovery. Theme is an abstraction. We need examples
+  to help understand the abstraction.</p>
+  <p>These themes have the most supporting evidence in this
+  incident. They generated fruitful discussion in the
+  retrospective.</p>
+  <p>Saturation and overload.&nbsp;Customer Service was
+  overwhelmed. The incident commanders skillfully navigated their
+  own and each other’s saturation.</p>
+  <p>Expertise hides the difficulty of work.&nbsp;…</p>
+  <p>Common ground supports coordination.&nbsp;…</p>
+  <p>Tradeoff decisions.&nbsp;Disagreement about whether to await a
+  fix of the air conditioning or activate the business continuity
+  plan.</p>
+  <p>Multi-party dilemma.&nbsp;…</p>
+  <ul>
+    <li>Question of fixation reviewing what services changed</li>
+    <li>High-pressure is business-as-usual</li>
+  </ul>
+  <h1 id="h.rs7pb5zl3g9">Key Insights</h1>
+  <h2 id="h.hlx0dzbjzwhl">Monitoring Saturation—and Four Responses
+  to Overload</h2>
+  <p>Managing the risk of saturation (or the inverse, managing the
+  capacity to adapt)&nbsp;is a marker of expertise in resilience
+  engineering. This case is the first time, Dear Reader, this
+  analyst has had participants explicitly aware of managing
+  saturation—their own or their colleague's.<sup><a href="#ftnt1"
+  id="ftnt_ref1">[1]</a></sup></p>
+  <p>There are four responses to overload (that is
+  over-saturation). Two are urgent: reducing thoroughness, and
+  shedding load. Two require anticipation: deferring work, and
+  recruiting resources. Some examples follow.</p>
+  <p>It is worth noting that overload is everywhere. It’s in
+  bacteria. It's in the way humans communicate. It's in our
+  individual experience of a to-do list. It's in the kafka
+  producers and consumers. It’s in our families and parenting. It’s
+  everywhere. This model of responses to overload applies to any
+  expression of overload.</p>
+  <p>The first two are the default ways that overload gets handled:
+  reducing thoroughness on the collection of things you're trying
+  to manage, or just dropping things from them getting done. What
+  humans do by default is reduce thoroughness without even
+  thinking. Before we even start shedding load, we reduce
+  thoroughness and try as long as we can to manage the to-do list
+  that's in our brain. At some point we just forget some of things
+  we were trying to work on. That's where we drop load. But the
+  default mode is reducing thoroughness. And these first two
+  responses often come with sub-optimal outcomes.</p>
+  <p>The second two require anticipation of the bottleneck, but
+  generally lead to better outcomes. You can recruit more
+  resources, get help from other people, or other systems, or you
+  can defer work until later.</p>
+  <p>Customer Service&nbsp;was immediately overloaded.</p>
+  <p>in the retro<br>
+  It is worth mentioning that as a business, we were completely
+  caught off guard. Whenever customers notice a problem first, it
+  means we are taken by surprise and immediately puts me and my
+  team in a reactive position. We had 5 instances in the past
+  year.</p>
+  <p>in slack during the incident&nbsp;15:13:50.132Z<br>
+  Sorry everyone i might not be too responsive getting overwhelmed
+  here with these reports</p>
+  <p>in the retro<br>
+  Normally what happens is an incident is raised through internal
+  mechanisms: alerting or someone notices it. This one began with a
+  deluge of customer calls. “What happened?” “What is going on?”
+  “What's happening to my order?” I didn't have anything internally
+  looking wrong immediately.<br>
+  <br>
+  It threw me off because instead of putting up a status page, or
+  managing customer calls, I was just trying to figure out what is
+  happening, adding pressure on Sarah and Alex. What do I tell
+  people? For me that was a difficult part in the beginning.</p>
+  <p>When the customer support person takes the extra moment to
+  admit “i might not be too responsive,” they explicitly expects to
+  be shedding load. Announcing that fact helps everyone else adjust
+  their expectations accordingly—knowing about the overload, they
+  might look for other channels for communications, or they will
+  know they have to work harder to get through to customer support
+  if it’s important.</p>
+  <p>When asked how the drill compared to their experience with
+  real incidents, the Deputy Incident Commander immediately
+  mentioned saturation:</p>
+  <p>The moment that I felt like I was becoming quickly saturated,
+  and I had things to do, it felt like an authentic incident
+  because I felt like I was exercising those same muscles, the same
+  skills and techniques as an incident to try to stay ahead of the
+  tasks and keep from falling behind.</p>
+  <p>Clarifying more specifically:</p>
+  <p>[Sarah is] the incident commander, and she's going to deputize
+  me for certain roles that she needs me to do. And the very first
+  thing she wanted me to do was to handle the business comms
+  channel, because she was just far too busy to do that. And so
+  that was my task.</p>
+  <p>But in addition to that task that she gave me, there was just
+  an enormous amount of information to synthesize in a short amount
+  of time. I had to get a gist of what was happening in the main
+  channel that Sarah was dealing with before I left to focus my
+  attention on the business comms channel.</p>
+  <p>That had a flood of information, and it had... even though
+  these were simulated people, I still looked at them as real
+  demands from stressed out people, because that's how they were
+  conveyed to me.</p>
+  <p>And in addition, Sarah was tasking me on telemetry from
+  Grafana. Yeah. And I also had been checking in on the status of
+  trying to reach the site and was able to reproduce the issue. And
+  so that was on a polling loop in my mind as well.</p>
+  <p>So I quickly have a kind of 4 different trains of thought
+  going right at the beginning of the incident, and I was already
+  falling behind and feeling saturated.</p>
+  <p>Another moment of the Deputy’s explicit awareness of
+  saturation came up when asked for perspective about when the
+  Incident Commander redirected focus from investigating changes to
+  looking for infrastructure problems.</p>
+  <p>Yeah, I think I'm too busy in the communications, and I don't
+  know of it [the IC’s change of focus]. This was before [business
+  continuity] plans were being looked at. I was still pretty
+  saturated at that point.</p>
+  <h2 id="h.n8glfk5apje9">A high-pressure turning point, rich with
+  insight.</h2>
+  <p>There is a particularly difficult moment when many pressures
+  are bearing on the responders. The site has been showing errors
+  to customers for over 15 minutes. They have learned that the
+  mechanism of failure includes air-conditioning problems in the
+  third party data center. They are still recovering from initial
+  misunderstanding of an expected 4 hour response time from the
+  vendor. They are unsure if the business communications have
+  gotten a message out to customers. An active debate is underway
+  in the channel between the lead platform engineer and their
+  manager about how to proceed. The Incident Commander and the
+  Deputy are operating at saturation and yet they work with
+  exceptional expertise, coordination, and common ground. It
+  happens so quickly that it could easily be overlooked.</p>
+  <p>Incident Commander&nbsp;... Zoom 25m25s minutes<br>
+  There's a BCP [Business Continuity Plan] doc. Do you have
+  bandwidth to read it?</p>
+  <p>Deputy IC&nbsp;"Yeah, once I get this CAN
+  [Conditions-Actions-Needs report] out then I'll read it. I'm
+  almost done."</p>
+  <p>Then, as the Incident Commander was writing detailed
+  questions, the roles were reversed:</p>
+  <p>Deputy IC&nbsp;... Zoom 27m0s<br>
+  There are some execution steps for you in the BCP for failing
+  over.</p>
+  <p>Incident Commander—in zoom&nbsp;Hold just a second while I get
+  these... uh...<br>
+  finishes typing this message:<br>
+  Questions</p>
+  <p>1- can we move part of the traffic? Or is it all or nothing? -
+  Tanya, Hamed answer</p>
+  <p>2- are there servers in the area of the DC we can shut down?
+  Is our UAT there and able to be shut down for instance? - Tanya,
+  Daniel anwer</p>
+  <p>3- Can the DC vendor give us an ETA? Is there anything else
+  they can do to cool the room they are not already doing? Are we
+  the only tenant there - Tinus answer</p>
+  <p>Incident Commander—in Zoom<br>
+  explains why she wants those answers</p>
+  <p>Sorry, I put you in a buffer. What was that about the BCP?<br>
+  Deputy IC now reads the steps of the BCP for Incident Commander
+  to internalize</p>
+  <h2 id="h.xk9zp7595t2a">Expertise hides the difficulty of work
+  (aka The Law of Fluency)</h2>
+  <p>At this moment, the Incident Commander has too much on her
+  plate. She has already asked about the Business Continuity Plan
+  about four different times in the slack channel—the only answer
+  has been a link to the document which she does not have time to
+  read. Here she is delegating the reading to the Deputy. But the
+  way she delegates it is subtle and important:</p>
+  <p>There's a BCP [Business Continuity Plan] doc.</p>
+  <p>She also shares her screen to show the deputy exactly which
+  doc she means. This primes his perception to recognize the exact
+  document and also subtly emphasizes the importance of the
+  request.</p>
+  <p>Do you have bandwidth to read it?</p>
+  <p>This is a critical bit of expertise about saturation and
+  overload, and it is expertise on a couple different dimensions.
+  She understands her own saturation and is explicitly recruiting
+  resources—not shedding this load, not reducing thoroughness, but
+  choosing one of the two more effective adaptations to overload.
+  Yet she also understands that the Deputy is at risk of overload.
+  She understands the BCP will demand some careful attention. Her
+  question about bandwidth even precedes the specific request for
+  help: “will you read this for me?”</p>
+  <p>With similar expertise, the deputy responds:</p>
+  <p>Yeah, once I get this CAN [Conditions-Actions-Needs report]
+  out then I'll read it. I'm almost done.</p>
+  <p>He answers yes. This signals he understands the importance of
+  the request. He defers the work momentarily, demonstrating
+  awareness of his own saturation. Saying so out loud also signals
+  his understanding that the BCP will demand careful attention. He
+  also explicitly explains what he has prioritized ahead of this
+  request to read the BCP. This both provides an update on her
+  previous request, and also offers her a chance to override that
+  prioritization decision.</p>
+  <p>The reciprocal exchange when the Deputy returns with the
+  details about the BCP is similarly notable.</p>
+  <p>In the zoom recording, the Incident Commander is voicing and
+  typing a complicated set of parallel questions to manage the
+  parallel tracks and explicitly assigning people to respond to
+  each question.</p>
+  <p>While that’s happening the Deputy is careful about how he
+  interrupts. He knows how important the BCP is but he also
+  recognizes that the incident commander is saturated with the
+  questions she’s typing. He doesn't just drop it on her, but he
+  does interrupt just enough to put himself at the top of her queue
+  without blowing the cognitive stack that she's managing while
+  typing those questions.</p>
+  <p>There are some execution steps for you in the BCP for failing
+  over.</p>
+  <p>This is expert skill in coordination to have just the right
+  amount of interruption. The Incident Commander replies with
+  similar fluency to the earlier exchange.</p>
+  <p>Hold just a second while I get these...</p>
+  <p>Once again we can see explicit understanding of her own
+  saturation and an explicit choice to defer the work. She also
+  gives just enough signal to explain that the questions are taking
+  priority and another moment to explain why they were
+  important.</p>
+  <p>Sorry, I put you in a buffer. What was that about the BCP?</p>
+  <p>The Incident Commander indicates she’s now ready for the
+  details and also confirms her understanding that the interruption
+  from the Deputy was about the BCP. The body language on the zoom
+  recording is also notable. The Incident Commander closes her eyes
+  and puts her head down, listening intently as the Deputy quickly
+  reads through the details in the plan.</p>
+  <p>These very few words achieve enormous cognitive work and
+  effective coordination. The fluency with which they are signaling
+  awareness of, and carefully negotiating around each other's
+  overload is extraordinary. It bears repeating that both incident
+  commanders choose the more successful adaptations to overload.
+  They both recruit each other as resources. They both defer work,
+  if briefly. They also communicate just enough to keep the other
+  aware of the state of their shared work. They mutually manage
+  overload, that's really too much for both of them, and
+  successfully cope with it. They demonstrate expertise in managing
+  adaptive capacity.</p>
+  <h3 id="h.l9ydvqjjkbzw">Unexpected: Software learns an emotional
+  support practice from Medicine<sup><a href="#cmnt1" id=
+  "cmnt_ref1">[a]</a></sup></h3>
+  <p>During part 1 of the retrospective, the incident commanders
+  were asked “How real does all of this feel? Hearing [the
+  narrative] again, does this evoke what your brain and your body
+  were going through at that time?”<sup><a href="#ftnt2" id=
+  "ftnt_ref2">[2]</a></sup>&nbsp;A shallow interpretation of the
+  incident commander’s answer is a simple “Yes. It’s realistic.”
+  But in the answer given, we get a glimpse into a practice that we
+  wouldn’t have even known to ask about.</p>
+  <p>I came off the incident so convinced that I'd run a real
+  incident that I did a [90min] recording that night of a debrief
+  of my own performance as IC, just to get it out of my head.
+  Because even though my brain knew that this was a drill, my body
+  still felt like I had gone through an incident. With my employer,
+  we have this great debrief process that we use to help our
+  incident commanders process through and regulate down so [they]
+  don't go and stare at a wall at night and not sleep.</p>
+  <h2 id="h.9prz1e6y0d54">Coordination is extremely demanding.
+  <sup><a href="#cmnt2" id="cmnt_ref2">[b]</a></sup>Having a deputy
+  helps.</h2>
+  <p>When prompted to reflect on the difficulty of that
+  high-pressure turning point, the Incident Commander observed:</p>
+  <p>Keep in mind there were two people here, not just one. … Even
+  though we've never run an incident before, we have a really
+  strong friendship and we have a lot of common ground.</p>
+  <p>There are two pieces to this. I know him. I know he knows how
+  to handle saturation and monitor his own saturation. And I trust
+  him. So I threw stuff at him knowing and trusting that he would
+  prioritize the right things and offload or otherwise shed load
+  however he needed to. … He is a very mature incident
+  responder.</p>
+  <p>The second thing is that he and I have a strong friendship.
+  We've written papers together, and traveled together, and all
+  sorts of stuff. We come from similar incident response
+  backgrounds. So I don't have to say a lot of the normal niceties
+  that I would do with a person that I didn't know. I can be pretty
+  terse. I need a CAN. I need this, I need that. Go, go, go.</p>
+  <p>We share a language. So I'm not explaining what a CAN report
+  is. I'm saying, “I need a CAN.” This basic stuff. Go! Put the CEO
+  in a box. Go! I'm not explaining what it means to put an
+  executive in a box. I'm not telling him how to do it. And I think
+  that piece helps tremendously.</p>
+  <h2 id="h.5i7f4t082vt">Tradeoff: AC vs BCP</h2>
+  <ul>
+    <li>Argument between Hamed and Tanya</li>
+  </ul>
+  <ul>
+    <li>Hamed (advocated for BCP, discouraged waiting for AC)</li>
+  </ul>
+  <ul>
+    <li>The point of the BCP is to serve the business in exactly
+    these circumstances</li>
+    <li>Hamed naturally overlooks the technical difficulties ‘cos
+    he’s a bit further from them</li>
+    <li>What would it take for you to feel more confident in the
+    vendor in an emergency?</li>
+  </ul>
+  <ul>
+    <li>We are tiny fish for them. They’ll never prioritize us over
+    big bucks customers. I’ve flagged a few times that we need to
+    sign up to the highest level of support contract. It’s costly
+    but at least they are obliged to be responsive.</li>
+  </ul>
+  <ul>
+    <li>Tanya (advocated waiting for AC, discouraged BCP)</li>
+  </ul>
+  <ul>
+    <li>Tanya sees BCP as a compliance exercise</li>
+    <li>We’ve only done soft exercises, not hard exercises</li>
+    <li>Past three times we’ve done it, we only got it done quickly
+    once</li>
+    <li>What would it take for Tanya to feel more comfortable with
+    the BCP?</li>
+  </ul>
+  <ul>
+    <li>Doing BCP in real life like emergencies rather than “soft
+    BCP” to tick the compliance box.</li>
+    <li>Related, during the incident while working through the BCP,
+    Sarah and Alex discussed active-active failover options as an
+    alternative.</li>
+  </ul>
+  <ul>
+    <li>When Eric suggested Tanya demonstrated a high level of
+    psychological safety to challenge her supervisor in the
+    incident, Tanya offered a different explanation. If the BCP
+    fails, the consequences for clean up or perhaps even for blame
+    will fall on Tanya anyway. So she was kind of in a no-win
+    scenario and chose to voice her dissent.</li>
+  </ul>
+  <ul>
+    <li>Sarah observed that all actions are gambles and many
+    participants in the incident are motivated by their own sense
+    of responsibility for the outage or for recovering for
+    customers.</li>
+  </ul>
+  <ul>
+    <li>Sarah understands that executives need something to do to
+    feel useful and not helpless. Escalating with vendors is an
+    exceptional place to put senior leaders to work in an
+    incident.</li>
+    <li>TODO: quote Dr Richard Cook on all actions are
+    gambles.</li>
+    <li>TODO: Courtney brought up local rationality—we could link
+    to further reading</li>
+  </ul>
+  <h2 id="h.vavpcxdrsxsv">Is this a fixation on what
+  changed?<sup><a href="#cmnt3" id="cmnt_ref3">[c]</a></sup></h2>
+  <p>Fixation is a common pattern in incident response, though not
+  widely known in conventional incident retrospectives. Fixation is
+  when responders fail to revise their assessments of the situation
+  in light of new evidence. Cases of fixation include recurring
+  behaviors, opportunities to revise, and an eventual recognition
+  by participants that they have been stuck on the wrong thing.
+  Interestingly, in this specific case, participants express
+  knowledge of the pattern and some concern that they may have been
+  fixated on investigating what changed—but they may not have
+  actually been fixated. We present evidence that might support
+  fixation and invite discussion.</p>
+  <p>The incident commander's first thought was about
+  infrastructure. In this case that turned out to be well
+  calibrated to the actual mechanism of failure. However, the
+  response team fixated on reviewing recent changes for a few
+  minutes before turning attention back to infrastructure.</p>
+  <p>The first indication of problems was an urgent message:</p>
+  <p>Customer Support&nbsp;15:13:22.205Z<br>
+  Sorry to interupt everyone but reports are flooding in. Platform
+  seems to be down. I've never seen anything like this</p>
+  <p>Less than three minutes later the incident commander asks
+  about infrastructure: specifically, network or load
+  balancing.</p>
+  <p>Incident Comander—in Slack&nbsp;15:15:46.057Z<br>
+  Daniel&nbsp;what are you seeing? Do we have anything in how we
+  network or load balance or anything that would just affect
+  europe?</p>
+  <p>Incident Comander—reflecting later<br>
+  In my head it screams obvious to me [that there must be an
+  infrastructure-level problem]. It's not a specific feature. It is
+  large swaths of things. They're not saying "We can't add to cart.
+  We can't check out. Paypal's failing." They're not telling me
+  something that tells me it's more component level. They're saying
+  "Everything. We're having all sorts of services going down.
+  Website with whole impact." Big impact to me ... there's only a
+  certain number of things that can hit big swaths of things.</p>
+  <p>One minute after asking about infrastructure, the incident
+  commander also asked about recent changes or load.</p>
+  <p>Incident Comander 15:16:27.380Z<br>
+  Ok, Daniel, Tanya&nbsp;what would be widespread like that? Any
+  changes? Do we see any load issues?</p>
+  <p>Two engineers quickly responded to the question about what
+  changed.</p>
+  <p>Tanya&nbsp;15:16:40.646Z<br>
+  Let me check changes</p>
+  <p>Daniel&nbsp;15:16:49.103Z<br>
+  There were a few deployments, here is the list of them<a href=
+  "https://www.google.com/url?q=https://uptime-labs.atlassian.net/wiki/spaces/ULPUBLIC/pages/450953217/Breaking%2BBez%2BChange%2BRequest%2BLogs&amp;sa=D&amp;source=editors&amp;ust=1754327239186506&amp;usg=AOvVaw2ayDR8EBbGxnWnRWbe-4gk">&nbsp;</a><a href="https://www.google.com/url?q=https://uptime-labs.atlassian.net/wiki/spaces/ULPUBLIC/pages/450953217/Breaking%2BBez%2BChange%2BRequest%2BLogs&amp;sa=D&amp;source=editors&amp;ust=1754327239186874&amp;usg=AOvVaw3lR5cjQuI0ZGSHDKfyK2Kf">https://uptime-labs.atlassian.net/wiki/spaces/ULPUBLIC/pages/450953217/Breaking+Bez+Change+Request+Logs</a></p>
+  <p>Although changes were the center of attention at this moment,
+  there were contradictory signals early in the investigation of
+  changes.</p>
+  <p>Tanya&nbsp;15:17:13.103Z<br>
+  behaviour is odd , it seems like services are restarting</p>
+  <p>Tanya&nbsp;15:17:34.787Z<br>
+  what would cause services randomly restart!!</p>
+  <p>Another engineer was still considering infrastructure but
+  hadn't found anything yet and their attention was also drawn to
+  services restarting.</p>
+  <p>Daniel&nbsp;15:17:46.981Z<br>
+  Regarding load balancing, nothing that i can think of<br>
+  It looks like all services are restarting</p>
+  <p>Nevertheless, the recent deployments drew focus again.</p>
+  <p>Shay&nbsp;15:18:31.657Z<br>
+  currency change is worth checking out</p>
+  <p>With a reinforcing signal as details about restarts overlapped
+  with the details of recent changes.</p>
+  <p>Tanya&nbsp;15:18:58.431Z<br>
+  @IncidentCommander so far I can see FrontEnd restarting,
+  CurrencyServices,</p>
+  <p>Incident Commander&nbsp;15:19:23.871Z<br>
+  Daniel and Shay look at that currency change. When did it go in
+  and can we roll it back</p>
+  <p>The timing of that change and continued attention on restarts
+  begins to shift attention away from changes.</p>
+  <p>Daniel&nbsp;15:19:55.547Z<br>
+  it went live 27h hour</p>
+  <p>Tanya&nbsp;15:20:35.673Z<br>
+  I don't think it is change related<br>
+  the services are restarting<br>
+  one change can't affect all of the services</p>
+  <p>Even as the incident commander refocuses on infrastructure,
+  the interest in a change persists.</p>
+  <p>Incident Commander&nbsp;15:20:53.178Z<br>
+  Ok Shay keep looking at that on the side I want to pivot the main
+  bridge</p>
+  <p>Incident Commander&nbsp;15:21:05.209Z<br>
+  Tanya what can you tell me about these restarts. Do we have
+  logs?</p>
+  <p>Daniel&nbsp;15:21:12.543Z<br>
+  I have reviewed the change, It looks healthy. No issues found
+  with deployment</p>
+  <p>Incident Commander—in slack&nbsp;15:21:33.511Z Zoom 17m14s<br>
+  Daniel can you look at the health of the infra? Are we running
+  out of hardware resources or something else?</p>
+  <p>Incident Commander—in zoom<br>
+  @Deputy, let's think. What can affect all services in a region?
+  Like, network? DNS? something like Akamai on the front end?<br>
+  <br>
+  Deputy Incident Commander—in zoom<br>
+  On the online boutique we're getting an unbranded Nginx 503 page.
+  So we're still getting network connectivity to the web server. So
+  something… maybe there's a change that affected Nginx.</p>
+  <p>It was finally an email from the data center provider which
+  settled the attention on infrastructure.</p>
+  <p>CTO 15:22:00.891Z Zoom 17m41s<br>
+  Ah! I just noticed an email from DC provider. there is a service
+  notice<br>
+  email was in my junk box</p>
+  <p>Here's a moment of the Incident Commander’s reflection during
+  the incident, and the message she was typing as she said it.</p>
+  <p>Incident Commander—in zoom 32m49s<br>
+  I really went into this backwards. I have not had to fail over a
+  physical DC in so long. I should have lined all this up first.
+  Bad IC. Bad IC. I should have seen what I could have done in
+  parallel.</p>
+  <p>Incident Commander—in Slack 15:37:34.946Z Zoom 33m18s<br>
+  I want to go ahead and line up but not action steps</p>
+  <ol start="3">
+    <li>Sync critical retail data between DC1 and DC2</li>
+    <li>Reconfigure IP address in DNS console to point traffic to
+    DC2.</li>
+  </ol>
+  <p>Who is on deck to do each of those those? Can we do any
+  prework?</p>
+  <p>Argument for fixation: there is evidence of persistent
+  interest in changes, especially in CurrencyService; there is a
+  marked shift once the AC is identified as a contributing factor;
+  there are a variety of observations that contradict the
+  hypothesis of a recent change; the incident commander says they
+  “went into this backwards.”</p>
+  <p>Argument against fixation: there is also evidence of pursuing
+  multiple paths. The CurrencyService was not the only path of
+  inquiry and various possible infrastructure causes are considered
+  and ruled out as triggers.</p>
+  <h1 id="h.lliake8y8p60">Candidates for Recommendations</h1>
+  <p>This section is provided as fodder for discussion during the
+  retrospective. We hope conversation will generate more insight
+  and thereby yield recommendations that are well calibrated to the
+  real complexity of our business as revealed by this incident.</p>
+  <ul>
+    <li>Make the business continuity plan more consistent</li>
+  </ul>
+  <ul>
+    <li>TODO: quote from recording where Sarah and Alex discuss the
+    option of “active-active” fail-over even if it is more
+    expensive.</li>
+    <li>TODO: quote from the argument about whether to trust the
+    BCP vs trusting the vendor to fix the AC</li>
+  </ul>
+  <ul>
+    <li>Do the contracts with vendors create perverse incentives
+    for the vendors?</li>
+  </ul>
+  <ul>
+    <li>TODO: quote from Alex where he asks if the data center
+    people are pressuring the response team to prolong the outage
+    because they face penalties if the BCP is engaged</li>
+  </ul>
+  <h1 id="h.4x5k9l8j8q5f">Unanswered questions<sup><a href="#cmnt4"
+  id="cmnt_ref4">[d]</a></sup></h1>
+  <p>We always have to stop our investigation somewhere. There are
+  always unanswered questions.</p>
+  <ul>
+    <li>Is Tinus the only one getting the emails from the vendor?
+    Based on evidence we have, he's the only one who knows the
+    contents.</li>
+  </ul>
+  <ul>
+    <li>Do we need to expand recipients for email and other
+    notifications from vendors</li>
+  </ul>
+  <ul>
+    <li>Who does each vendor notify of problems?</li>
+    <li>How are those notifications delivered?</li>
+    <li>How do the target recipients monitor for those
+    notifications?</li>
+  </ul>
+  <ul>
+    <li>When the contact list was setup with the supplier it was
+    agreed that it’s sent to a distribution list. Over the years
+    other people in the DL left and no one remembered to update the
+    DL and designate new people.</li>
+  </ul>
+  <ul>
+    <li>Tinus, what was the original date on the email
+    notification. I understand it was in your spam folder, but if
+    it arrived before the big sale, would it have caused you to
+    change the date of the sale?</li>
+  </ul>
+  <ul>
+    <li>Do we need to&nbsp;include outreach to vendors&nbsp;when
+    planning&nbsp;future big sales or similar events</li>
+    <li>It was unfortunate timing that our big sale coincided with
+    high temperatures and AC problems</li>
+    <li>The email landed in my mailbox 1 hour before the incident
+    was reported. It’d have been to late to call off the sales
+    promotion. But it could give us time to failover to secondary
+    DC.</li>
+  </ul>
+  <ul>
+    <li>Is anyone alarmed about the vendor restarting the server
+    apparently without permission? Or alarmed that they have that
+    level of impact? Is this shrugged off because they have
+    physical access anyway? Do they know how to do graceful
+    shutdowns and restarts?</li>
+  </ul>
+  <ul>
+    <li>I was informed that servers were overheating and shut down
+    automatically to protect their hardware. It was not DC staff
+    doing so. “Dell PowerEdge servers are designed to automatically
+    shut down if they overheat to prevent damage.”</li>
+  </ul>
+  <ul>
+    <li>Tanya, how do you know your contact in the DC? Previous
+    relationship? Seems like you might have a useful back channel
+    there.</li>
+  </ul>
+  <ul>
+    <li>Met her at drinks after the renewal meeting last year. They
+    got our money and bought us a few pints!</li>
+  </ul>
+  <ul>
+    <li>There are several references to "The Server". Do we have
+    only one? Are all the microservices running on the same
+    server?</li>
+  </ul>
+  <ul>
+    <li>Communication mistakes. We’ve two racks.</li>
+  </ul>
+  <ul>
+    <li>Tanya, one of the most interesting features of this
+    incident is the DC support wiki. You weren't able to find that
+    wiki on your own. Can you remember where you looked for it
+    first? (maybe we need to put a link there)</li>
+  </ul>
+  <ul>
+    <li>I was searching like crazy. I spotted it in one of the
+    searches. I searched the DC provider name and filtered created
+    by Tinus. I can move to a dedicated space for support
+    contracts.</li>
+  </ul>
+  <ul>
+    <li>Tanya, You found contact info for both of the contracts.
+    The UAT one must have looked like the right thing at the time.
+    Can you remember why that looked right?</li>
+  </ul>
+  <ul>
+    <li>Both on the same wiki page , small font text written next
+    to one of the lines saying its UAT.</li>
+  </ul>
+  <ul>
+    <li>Tinus, related question about contact info. Once the issue
+    was resolved, you suggested:</li>
+  </ul>
+  <p>“We should review all of our 3rd party contracts! And make
+  sure we have correct contact info. We lost a lot of time on
+  that.”</p>
+  <ul>
+    <li>Challenge: Tanya found correct contact info for both
+    contracts.</li>
+    <li>The actual ambiguity is from multiple contracts.</li>
+    <li>Writing documentation for urgent use is extremely
+    challenging. Maybe we also need to review our docs with a
+    careful view of how they will work for a brain on high levels
+    of adrenaline.</li>
+    <li>Fair point. &nbsp;If not wrong , it took Tanya some time to
+    find it. It was not obvious to her where the document should
+    be.</li>
+  </ul>
+  <h1 id="h.8us0tjcbifjv">Appendix<sup><a href="#cmnt5" id=
+  "cmnt_ref5">[e]</a></sup><sup><a href="#cmnt6" id=
+  "cmnt_ref6">[f]</a></sup></h1>
+  <p>There are many other themes and insights with substantial
+  evidence. We list them here as opportunities for future
+  cross-case analysis. These may not be the most important themes
+  for this specific incident. However, there’s sufficient evidence
+  for each, that collecting notes here may become important to the
+  analysis of future incidents.</p>
+  <ul>
+    <li>Bob signaled he was overloaded with support requests.</li>
+    <li>Bez demands were a significant additional load for
+    Alex</li>
+  </ul>
+  <ul>
+    <li>small win: Alex’s work here created room for Sarah to focus
+    on resolution</li>
+  </ul>
+  <ul>
+    <li>scope: EU</li>
+    <li>Expertise & Ambiguity: with very little evidence Sarah was
+    immediately asking about infrastructure</li>
+  </ul>
+  <ul>
+    <li>This turned out to be well calibrated to the outcomes of
+    this incident</li>
+    <li>There was sufficient ambiguity in the symptoms and changes
+    to delay an intervention in the infrastructure</li>
+    <li>Under different circumstances, what looks like delay in
+    this case might have been appropriate caution in another case
+    where the BCP failed.</li>
+  </ul>
+  <ul>
+    <li>Expertise & Ambiguity:</li>
+    <li>two contracts with the vendor &nbsp;</li>
+    <li>business continuity plan &nbsp;</li>
+    <li>coordination change: tempo? pressure? &nbsp;</li>
+    <li>parallel mitigations &nbsp;</li>
+    <li>minor failure in BCP &nbsp;</li>
+    <li>no previous drill experience &nbsp;</li>
+    <li>examples of Alex’s slack markdown skills &nbsp;</li>
+    <li>markdown editing during the incident &nbsp;</li>
+    <li>first time as a deputy incident commander &nbsp;</li>
+    <li>timezone confusion &nbsp;</li>
+    <li>unbranded 500 page &nbsp;</li>
+    <li>what surprised you about the drill? &nbsp;</li>
+    <li>eric surprised: SF practices drills regularly &nbsp;</li>
+    <li>unfamiliar with "org" &nbsp;</li>
+    <li>unfamiliar with slack-centered incident response
+    &nbsp;</li>
+    <li>Joint Cognitive Systems &nbsp;</li>
+    <li>detecting a weak signal &nbsp;</li>
+    <li>there could be other dragons &nbsp;</li>
+    <li>surprised to have missed Daniel's observation &nbsp;</li>
+    <li>vendor notification identified as spam &nbsp;</li>
+    <li>What is in the email? &nbsp;</li>
+    <li>In a JCS, trust is a kind of Fluency &nbsp;</li>
+    <li>Fluency in the CAN &nbsp;</li>
+    <li>Simulation and deliberate practice &nbsp;</li>
+    <li>drills experience & purpose of drills &nbsp;</li>
+    <li>Recognizing expertise &nbsp;</li>
+  </ul>
+  <hr>
+  <div>
+    <p><a href="#ftnt_ref1" id="ftnt1">[1]</a>&nbsp;All systems
+    have an envelope of performance, or a range of adaptive
+    behavior, due to finite resources&nbsp;and continuous change.
+    There is a transition zone where a system shifts regimes of
+    performance when pushed to the edge of its envelope.
+    Brittleness and graceful extensibility describe how the system
+    responds while exceeding its envelope of performance. Graceful
+    extensibility refers to a system’s ability to adapt how it
+    works to extend performance past the boundary into a new regime
+    of performance invoking new resources, responses,
+    relationships, and priorities.</p>
+    <p>At the heart of the theory of graceful extensibility is the
+    fundamental concept of managing risk of saturation&nbsp;via
+    regulating the capacity for maneuver. Woods, David. (2018). The
+    Theory of Graceful Extensibility: Basic rules that govern
+    adaptive systems. Environment Systems and Decisions. 38.
+    10.1007/s10669-018-9708-3. <a href=
+    "https://www.google.com/url?q=https://www.researchgate.net/publication/327427067_The_Theory_of_Graceful_Extensibility_Basic_rules_that_govern_adaptive_systems&amp;sa=D&amp;source=editors&amp;ust=1754327239213320&amp;usg=AOvVaw28SfmjzHN6Sy7pmKHRnyM4">
+    https://www.researchgate.net/publication/327427067_The_Theory_of_Graceful_Extensibility_Basic_rules_that_govern_adaptive_systems</a>&nbsp;</p>
+  </div>
+  <div>
+    <p><a href="#ftnt_ref2" id="ftnt2">[2]</a>&nbsp;There are many
+    examples of an important skill demonstrated by many of the
+    participants in the retro. Human memory is tricky. Knowledge
+    elicitation&nbsp;is a skill to help learn more from experts.
+    This is a really good question:&nbsp;“Does this evoke what your
+    brain and your body were going through at that time?” It
+    orients the incident commanders to their specific lived
+    experience at the time. The question itself hints at the value
+    of going back through the narrative journey of the incident. It
+    is really valuable when reviewing the narrative, to include the
+    many different paths that were explored, not only the one path
+    that ultimately resolved the situation. Orienting the
+    conversation around the embodied context of what was happening
+    at the time will help the participants remember what was hard
+    at the time in more detail.</p>
+  </div>
+  <div>
+    <p><a href="#cmnt_ref1" id="cmnt1">[a]</a>I can't find the
+    evidence that this came from medicine. I remember it clearly,
+    but can't figure out where the evidence is.</p>
+  </div>
+  <div>
+    <p><a href="#cmnt_ref2" id="cmnt2">[b]</a>This section doesn't
+    support the claim of demanding yet.</p>
+  </div>
+  <div>
+    <p><a href="#cmnt_ref3" id="cmnt3">[c]</a>replace names with
+    roles throughout this section</p>
+  </div>
+  <div>
+    <p><a href="#cmnt_ref4" id="cmnt4">[d]</a>These specific
+    questions are answered and should be moved out of this section.
+    Any remaining unanswered questions should&nbsp;be added
+    here.</p>
+  </div>
+  <div>
+    <p><a href="#cmnt_ref5" id="cmnt5">[e]</a>Maybe rename to
+    Observations</p>
+  </div>
+  <div>
+    <p><a href="#cmnt_ref6" id="cmnt6">[f]</a>Also, TODO: bring
+    forward&nbsp;the evidence to support these observations.</p>
+  </div>
+</body>
+</html>
